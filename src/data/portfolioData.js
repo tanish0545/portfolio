@@ -162,7 +162,7 @@ export const projectsData = [
       "Personalized tea subscription box builder"
     ],
     githubUrl: "https://github.com/tanish0545/leafly-tea-store",
-    liveDemoUrl: "https://https://leaflytea.in/",
+    liveDemoUrl: "https://leaflytea.in/",
     accentColor: "#E50914"
   },
   {
