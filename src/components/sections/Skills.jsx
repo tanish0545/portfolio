@@ -26,10 +26,12 @@ const categoryIcons = {
 
 export default function Skills() {
   return (
-    <section id="skills" className="relative py-28 scroll-mt-20 bg-[#F8F9FA] dark:bg-[#080808] transition-colors duration-300">
-      {/* Background Red Ambient */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-red-600/5 rounded-full blur-[180px] pointer-events-none" />
-      <div className="absolute inset-0 bg-tech-grid opacity-30 pointer-events-none" />
+    <section id="skills" className="relative py-28 scroll-mt-20 bg-[#F8F9FA] dark:bg-[#080808] transition-colors duration-300 overflow-hidden w-full max-w-full box-border">
+      {/* Background Red Ambient strictly bounded */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[700px] h-[90vw] max-h-[700px] bg-red-600/5 rounded-full blur-[180px] pointer-events-none" />
+        <div className="absolute inset-0 bg-tech-grid opacity-30 pointer-events-none" />
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         

@@ -13,11 +13,13 @@ export default function ResumePreview({ onDownloadResume }) {
   };
 
   return (
-    <section id="resume" className="relative py-28 scroll-mt-20 bg-zinc-50 dark:bg-[#0A0A0A] border-y border-zinc-200 dark:border-[#1E1E1E] transition-colors duration-300">
-      {/* Background Red Ambient */}
-      <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-red-600/5 rounded-full blur-[160px] pointer-events-none" />
+    <section id="resume" className="relative py-28 scroll-mt-20 bg-zinc-50 dark:bg-[#0A0A0A] border-y border-zinc-200 dark:border-[#1E1E1E] transition-colors duration-300 overflow-hidden w-full max-w-full box-border">
+      {/* Background Red Ambient strictly bounded */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] max-w-[384px] h-[70vw] max-h-[384px] bg-red-600/5 rounded-full blur-[160px] pointer-events-none" />
+      </div>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full box-border">
 
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-16">
@@ -40,7 +42,7 @@ export default function ResumePreview({ onDownloadResume }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="bg-white dark:bg-[#121212] rounded-3xl border border-zinc-200 dark:border-[#242424] p-6 sm:p-10 relative overflow-hidden shadow-sm dark:shadow-[0_20px_60px_rgba(0,0,0,0.9)] hover:border-red-500/40 transition-all"
+          className="bg-white dark:bg-[#121212] rounded-2xl sm:rounded-3xl border border-zinc-200 dark:border-[#242424] p-5 sm:p-10 relative overflow-hidden shadow-sm dark:shadow-[0_20px_60px_rgba(0,0,0,0.9)] hover:border-red-500/40 transition-all w-full box-border"
         >
           {/* Subtle Red Flare in Corner */}
           <div className="absolute top-0 right-0 w-80 h-80 bg-red-600/10 rounded-full blur-[120px] pointer-events-none" />

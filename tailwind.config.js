@@ -7,6 +7,9 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        'md': '769px',
+      },
       colors: {
         dark: {
           bg: "#080808",

@@ -16,11 +16,13 @@ export default function Experience() {
   };
 
   return (
-    <section id="experience" className="relative py-28 scroll-mt-20 bg-[#F8F9FA] dark:bg-[#080808] transition-colors duration-300">
-      {/* Ambient background glow */}
-      <div className="absolute top-1/3 left-10 w-96 h-96 bg-red-600/5 rounded-full blur-[140px] pointer-events-none" />
+    <section id="experience" className="relative py-28 scroll-mt-20 bg-[#F8F9FA] dark:bg-[#080808] transition-colors duration-300 overflow-hidden w-full max-w-full box-border">
+      {/* Ambient background glow strictly bounded */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[70vw] max-w-[384px] h-[70vw] max-h-[384px] bg-red-600/5 rounded-full blur-[140px] pointer-events-none" />
+      </div>
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full box-border">
         
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-16">
@@ -38,7 +40,7 @@ export default function Experience() {
         </div>
 
         {/* Vertical Timeline */}
-        <div className="relative pl-6 sm:pl-10 border-l-2 border-red-600/25 space-y-12 my-8 ml-4 sm:ml-8">
+        <div className="relative pl-6 sm:pl-10 border-l-2 border-red-600/25 space-y-12 my-8 ml-4 sm:ml-8 box-border">
           {journeyTimeline.map((item, idx) => {
             const Icon = getTimelineIcon(item.type);
 
@@ -49,7 +51,7 @@ export default function Experience() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: idx * 0.12 }}
-                className="relative group"
+                className="relative group box-border"
               >
                 {/* Glowing Node Dot on Timeline Line */}
                 <div
@@ -59,7 +61,7 @@ export default function Experience() {
                 </div>
 
                 {/* Content Card */}
-                <div className="bg-white dark:bg-[#121212] p-6 sm:p-8 rounded-3xl border border-zinc-200 dark:border-[#242424] shadow-sm dark:shadow-[0_10px_35px_rgba(0,0,0,0.8)] group-hover:border-red-500/50 group-hover:shadow-[0_0_25px_rgba(229,9,20,0.2)] transition-all duration-300">
+                <div className="bg-white dark:bg-[#121212] p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-zinc-200 dark:border-[#242424] shadow-sm dark:shadow-[0_10px_35px_rgba(0,0,0,0.8)] group-hover:border-red-500/50 group-hover:shadow-[0_0_25px_rgba(229,9,20,0.2)] transition-all duration-300 box-border">
                   <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                     <span className="text-xs font-mono font-semibold px-3 py-1 rounded-full border border-red-300 dark:border-red-500/30 bg-red-50 dark:bg-red-950/30 text-red-600 dark:text-red-400 flex items-center gap-1.5">
                       <Calendar className="w-3.5 h-3.5 text-[#E50914]" />

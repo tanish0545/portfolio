@@ -13,21 +13,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script>
-      (function() {
-        try {
-          var saved = localStorage.getItem('portfolio-theme');
-          if (saved === 'light') {
-            document.documentElement.classList.remove('dark');
-            document.documentElement.classList.add('light');
-          } else {
-            document.documentElement.classList.add('dark');
-            document.documentElement.classList.remove('light');
-          }
-        } catch (e) {}
-      })();
+      try {
+        localStorage.removeItem('portfolio-theme');
+        document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
+      } catch (e) {}
     </script>
   </head>
-  <body class="bg-[#F8F9FA] dark:bg-[#080808] text-[#0F172A] dark:text-[#FFFFFF] antialiased selection:bg-[#E50914]/25 selection:text-[#FF2633] overflow-x-hidden transition-colors duration-300">
+  <body class="bg-[#080808] text-[#FFFFFF] antialiased selection:bg-[#E50914]/25 selection:text-[#FF2633] overflow-x-hidden">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

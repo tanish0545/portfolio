@@ -52,7 +52,7 @@ export default function ProjectCard({ project, onSelect }) {
             <>
               {/* Subtle tech grid inside thumbnail */}
               <div className="absolute inset-0 bg-tech-grid opacity-35 pointer-events-none" />
-              <div className="absolute -top-10 -right-10 w-32 h-32 bg-red-600/10 rounded-full blur-2xl pointer-events-none group-hover:bg-red-600/20 transition-all" />
+              <div className="absolute top-0 right-0 w-28 h-28 bg-red-600/10 rounded-full blur-2xl pointer-events-none group-hover:bg-red-600/20 transition-all" />
             </>
           )}
 

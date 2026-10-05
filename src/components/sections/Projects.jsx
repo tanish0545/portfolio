@@ -20,10 +20,12 @@ export default function Projects() {
   });
 
   return (
-    <section id="projects" className="relative py-28 scroll-mt-20 bg-zinc-50 dark:bg-[#0A0A0A] border-t border-zinc-200 dark:border-[#1E1E1E] transition-colors duration-300">
-      {/* Ambient background glow */}
-      <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-red-600/5 rounded-full blur-[160px] pointer-events-none" />
-      <div className="absolute bottom-10 right-1/4 w-[400px] h-[400px] bg-red-900/10 rounded-full blur-[140px] pointer-events-none" />
+    <section id="projects" className="relative py-28 scroll-mt-20 bg-zinc-50 dark:bg-[#0A0A0A] border-t border-zinc-200 dark:border-[#1E1E1E] transition-colors duration-300 overflow-hidden w-full max-w-full box-border">
+      {/* Ambient background glow strictly bounded */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[70vw] max-w-[500px] h-[70vw] max-h-[500px] bg-red-600/5 rounded-full blur-[160px] pointer-events-none" />
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[60vw] max-w-[400px] h-[60vw] max-h-[400px] bg-red-900/10 rounded-full blur-[140px] pointer-events-none" />
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         

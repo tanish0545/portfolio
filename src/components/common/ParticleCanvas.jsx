@@ -66,18 +66,11 @@ export default function ParticleCanvas({ className = "absolute inset-0 pointer-e
 
     const particles = [];
 
-    const darkColors = [
+    const particleColors = [
       'rgba(229, 9, 20, 0.75)',   // Primary Red (#E50914)
       'rgba(255, 38, 51, 0.65)',  // Bright Red (#FF2633)
       'rgba(239, 68, 68, 0.55)',  // Crimson
       'rgba(255, 255, 255, 0.35)', // Subtle Star Spark
-    ];
-
-    const lightColors = [
-      'rgba(229, 9, 20, 0.75)',   // Rich Red
-      'rgba(220, 38, 38, 0.65)',  // Carmine Red
-      'rgba(185, 28, 28, 0.55)',  // Deep Ruby
-      'rgba(239, 68, 68, 0.45)',  // Coral Red
     ];
 
     for (let i = 0; i < particleCount; i++) {
@@ -99,8 +92,7 @@ export default function ParticleCanvas({ className = "absolute inset-0 pointer-e
       t += 0.01;
       ctx.clearRect(0, 0, width, height);
 
-      const isDark = document.documentElement.classList.contains('dark');
-      const activeColors = isDark ? darkColors : lightColors;
+      const activeColors = particleColors;
 
       // Draw subtle drifting and pulsing background particles
       for (let i = 0; i < particles.length; i++) {
@@ -143,7 +135,7 @@ export default function ParticleCanvas({ className = "absolute inset-0 pointer-e
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < 75) {
-            const alpha = (1 - dist / 75) * (isDark ? 0.09 : 0.06);
+            const alpha = (1 - dist / 75) * 0.09;
             ctx.shadowBlur = 0;
             ctx.strokeStyle = `rgba(229, 9, 20, ${alpha})`;
             ctx.lineWidth = 0.5;
@@ -172,7 +164,15 @@ export default function ParticleCanvas({ className = "absolute inset-0 pointer-e
     <canvas
       ref={canvasRef}
       className={className}
-      style={{ display: 'block' }}
+      style={{
+        position: 'absolute',
+        inset: 0,
+        width: '100%',
+        height: '100%',
+        maxWidth: '100%',
+        display: 'block',
+        pointerEvents: 'none',
+      }}
       aria-hidden="true"
     />
   );

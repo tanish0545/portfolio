@@ -24,11 +24,11 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative border-t border-zinc-200 dark:border-[#1C1C1C] bg-zinc-50 dark:bg-[#080808] pt-16 pb-12 overflow-hidden transition-colors duration-300">
+    <footer className="relative border-t border-zinc-200 dark:border-[#1C1C1C] bg-zinc-50 dark:bg-[#080808] pt-16 pb-12 overflow-hidden transition-colors duration-300 w-full max-w-full box-border">
       {/* Top Red Gradient Line */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-[1px] bg-gradient-to-r from-transparent via-[#E50914] to-transparent shadow-[0_0_10px_#E50914]" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full box-border">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 pb-12 border-b border-zinc-200 dark:border-[#1A1A1A]">
           
           {/* Brand Info */}

@@ -3,48 +3,45 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-    transition: background-color 0.25s ease, color 0.25s ease;
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
   }
 
-  html.dark {
+  html,
+  body,
+  #root {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
     color-scheme: dark;
     background-color: #080808;
     color: #FFFFFF;
   }
 
-  html.light {
-    color-scheme: light;
-    background-color: #F8F9FA;
-    color: #0F172A;
-  }
-
   body {
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     overflow-x: hidden;
+    background-color: #080808;
+    color: #FFFFFF;
   }
 
   /* Custom subtle red scrollbar */
   ::-webkit-scrollbar {
     width: 8px;
   }
-  .dark ::-webkit-scrollbar-track,
-  html.dark::-webkit-scrollbar-track {
+  ::-webkit-scrollbar-track {
     background: #080808;
   }
-  .dark ::-webkit-scrollbar-thumb,
-  html.dark::-webkit-scrollbar-thumb {
+  ::-webkit-scrollbar-thumb {
     background: #222222;
-    border-radius: 9999px;
-  }
-  .light ::-webkit-scrollbar-track,
-  html.light::-webkit-scrollbar-track {
-    background: #F1F5F9;
-  }
-  .light ::-webkit-scrollbar-thumb,
-  html.light::-webkit-scrollbar-thumb {
-    background: #CBD5E1;
     border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
@@ -54,16 +51,11 @@
 
 @layer utilities {
   .glass-card {
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(21, 21, 21, 0.75);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid #E2E8F0;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .dark .glass-card {
-    background: rgba(21, 21, 21, 0.75);
     border: 1px solid #292929;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .glass-card:hover {
@@ -72,24 +64,13 @@
   }
 
   .glass-nav {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(12, 12, 12, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(226, 232, 240, 0.8);
-  }
-
-  .dark .glass-nav {
-    background: rgba(12, 12, 12, 0.85);
     border: 1px solid rgba(41, 41, 41, 0.8);
   }
 
   .text-gradient-red {
-    background: linear-gradient(135deg, #111827 0%, #E50914 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .dark .text-gradient-red {
     background: linear-gradient(135deg, #FFFFFF 0%, #E50914 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -104,22 +85,12 @@
 .bg-tech-grid {
   background-size: 32px 32px;
   background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.035) 1px, transparent 1px);
-}
-
-.dark .bg-tech-grid {
-  background-image: 
     linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
 }
 
 /* Vignette overlay */
 .vignette-overlay {
-  background: radial-gradient(circle at center, transparent 50%, rgba(240, 243, 248, 0.7) 95%);
-}
-
-.dark .vignette-overlay {
   background: radial-gradient(circle at center, transparent 40%, rgba(8, 8, 8, 0.85) 90%);
 }
 

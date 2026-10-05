@@ -12,33 +12,14 @@ import { personalInfo } from './data/portfolioData';
 
 export default function App() {
   const [activeSection, setActiveSection] = useState('home');
-  const [theme, setTheme] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('portfolio-theme');
-      if (saved === 'light' || saved === 'dark') return saved;
-    }
-    return 'dark';
-  });
 
   useEffect(() => {
-    const root = document.documentElement;
-    if (theme === 'dark') {
-      root.classList.add('dark');
-      root.classList.remove('light');
-    } else {
-      root.classList.remove('dark');
-      root.classList.add('light');
-    }
+    document.documentElement.classList.add('dark');
+    document.documentElement.classList.remove('light');
     try {
-      localStorage.setItem('portfolio-theme', theme);
-    } catch {
-      // Ignore localStorage errors
-    }
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
-  };
+      localStorage.removeItem('portfolio-theme');
+    } catch {}
+  }, []);
 
   useEffect(() => {
     const sections = ['home', 'about', 'skills', 'projects', 'experience', 'resume', 'contact'];
@@ -73,28 +54,26 @@ export default function App() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#F8F9FA] dark:bg-[#080808] text-[#0F172A] dark:text-white selection:bg-[#E50914]/25 selection:text-[#FF2633] transition-colors duration-300">
-      {/* Floating Glassmorphic Navbar with Theme Toggle (z-50) */}
+    <div className="relative min-h-screen w-full max-w-full overflow-x-hidden bg-[#080808] text-white selection:bg-[#E50914]/25 selection:text-[#FF2633] box-border">
+      {/* Floating Glassmorphic Navbar (z-50) */}
       <Navbar 
         activeSection={activeSection} 
         onDownloadResume={handleDownloadResume} 
-        theme={theme}
-        onToggleTheme={toggleTheme}
       />
 
       {/* Main Content Sections */}
-      <main className="relative">
-        <Hero onDownloadResume={handleDownloadResume} theme={theme} />
-        <About theme={theme} />
-        <Skills theme={theme} />
-        <Projects theme={theme} />
-        <Experience theme={theme} />
-        <ResumePreview onDownloadResume={handleDownloadResume} theme={theme} />
-        <Contact theme={theme} />
+      <main className="relative w-full max-w-full overflow-hidden box-border">
+        <Hero onDownloadResume={handleDownloadResume} />
+        <About />
+        <Skills />
+        <Projects />
+        <Experience />
+        <ResumePreview onDownloadResume={handleDownloadResume} />
+        <Contact />
       </main>
 
       {/* Footer */}
-      <Footer theme={theme} />
+      <Footer />
     </div>
   );
 }

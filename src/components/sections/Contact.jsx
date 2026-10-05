@@ -105,11 +105,13 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-28 scroll-mt-20 bg-transparent transition-colors duration-300">
-      {/* Red ambient background flare */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-600/5 rounded-full blur-[170px] pointer-events-none" />
+    <section id="contact" className="relative py-28 scroll-mt-20 bg-transparent transition-colors duration-300 overflow-hidden w-full max-w-full box-border">
+      {/* Red ambient background flare strictly bounded */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[600px] h-[90vw] max-h-[600px] bg-red-600/5 rounded-full blur-[170px] pointer-events-none" />
+      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full box-border">
         
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-16">
