@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Mail, Send, Copy, Check, MessageSquare, AlertCircle } from 'lucide-react';
 import { Github, Linkedin } from '../common/Icons';
 import confetti from 'canvas-confetti';
+import emailjs from '@emailjs/browser';
 import { personalInfo } from '../../data/portfolioData';
 
 export default function Contact() {
@@ -17,6 +18,7 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   const validate = () => {
     const errs = {};
@@ -37,10 +39,14 @@ export default function Contact() {
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: '' }));
     }
+    if (submitError) {
+      setSubmitError('');
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitError('');
     const errs = validate();
     if (Object.keys(errs).length > 0) {
       setErrors(errs);
@@ -49,7 +55,34 @@ export default function Contact() {
 
     setIsSubmitting(true);
 
-    setTimeout(() => {
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      console.error('EmailJS configuration missing. Please verify environment variables.');
+      setSubmitError('Email service is currently unconfigured. Please check environment variables.');
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+          from_name: formData.name,
+          from_email: formData.email,
+          reply_to: formData.email,
+          to_email: 'tanishjangale050@gmail.com'
+        },
+        publicKey
+      );
+
       setIsSubmitting(false);
       setSubmitted(true);
       confetti({
@@ -58,7 +91,11 @@ export default function Contact() {
         origin: { y: 0.6 },
         colors: ['#E50914', '#FF2633', '#FF6B6B', '#FFFFFF']
       });
-    }, 600);
+    } catch (error) {
+      console.error('Failed to send email via EmailJS:', error);
+      setSubmitError(error?.text || 'Failed to send message. Please try again or reach out directly.');
+      setIsSubmitting(false);
+    }
   };
 
   const copyEmailToClipboard = () => {
@@ -190,6 +227,7 @@ export default function Contact() {
                   <button
                     onClick={() => {
                       setSubmitted(false);
+                      setSubmitError('');
                       setFormData({ name: '', email: '', subject: '', message: '' });
                     }}
                     className="px-6 py-2.5 rounded-xl text-xs font-semibold text-white bg-[#1F1F1F] hover:bg-[#282828] border border-[#333] transition-colors"
@@ -281,6 +319,13 @@ export default function Contact() {
                     )}
                   </div>
 
+                  {submitError && (
+                    <div className="p-3.5 rounded-xl bg-red-950/40 border border-red-500/40 text-red-300 text-xs flex items-center gap-2.5">
+                      <AlertCircle className="w-4 h-4 text-red-400 flex-shrink-0" />
+                      <span>{submitError}</span>
+                    </div>
+                  )}
+
                   {/* Submit Button */}
                   <button
                     type="submit"
@@ -290,7 +335,7 @@ export default function Contact() {
                     {isSubmitting ? (
                       <span className="inline-flex items-center gap-2">
                         <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                        Validating...
+                        Sending...
                       </span>
                     ) : (
                       <>
