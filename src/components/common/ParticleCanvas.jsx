@@ -1,15 +1,14 @@
 import React, { useEffect, useRef } from 'react';
 
 /**
- * Cinematic Black + Red Particle & Ambient Light Canvas.
- * Features red glowing nodes, animated thin connecting lines,
- * and mouse-responsive ambient light.
+ * Atmospheric Subtle Red Particles Canvas.
+ * Configured at Layer 4 (z-index 3 in Hero atmosphere),
+ * staying strictly behind the portrait, hero name, cards, and interactive UI.
  */
-export default function ParticleCanvas() {
+export default function ParticleCanvas({ className = "absolute inset-0 pointer-events-none z-[3]" }) {
   const canvasRef = useRef(null);
 
   useEffect(() => {
-    // Check prefers-reduced-motion
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       return;
     }
@@ -19,13 +18,23 @@ export default function ParticleCanvas() {
     const ctx = canvas.getContext('2d');
     let animationFrameId;
 
-    let width = (canvas.width = window.innerWidth);
-    let height = (canvas.height = window.innerHeight);
+    const getDimensions = () => {
+      const parent = canvas.parentElement;
+      return {
+        width: parent ? parent.clientWidth : window.innerWidth,
+        height: parent ? parent.clientHeight : window.innerHeight,
+      };
+    };
+
+    let { width, height } = getDimensions();
+    canvas.width = width;
+    canvas.height = height;
 
     const handleResize = () => {
       if (!canvas) return;
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
+      const dim = getDimensions();
+      width = canvas.width = dim.width;
+      height = canvas.height = dim.height;
     };
 
     window.addEventListener('resize', handleResize);
@@ -33,12 +42,14 @@ export default function ParticleCanvas() {
     const mouse = {
       x: null,
       y: null,
-      radius: 130,
+      radius: 100,
     };
 
     const handleMouseMove = (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
+      if (!canvas) return;
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
     };
 
     const handleMouseLeave = () => {
@@ -49,57 +60,49 @@ export default function ParticleCanvas() {
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mouseleave', handleMouseLeave);
 
-    // Dynamic density tuning for high 60fps performance
     const isMobile = width < 768;
-    const particleCount = isMobile 
-      ? Math.min(Math.floor((width * height) / 30000), 25)
-      : Math.min(Math.floor((width * height) / 20000), 65);
+    // Controlled, subtle particle count to avoid visual clutter
+    const particleCount = isMobile ? 18 : 36;
 
     const particles = [];
 
-    const colors = [
-      'rgba(229, 9, 20, 0.65)',    // Primary Red (#E50914)
-      'rgba(255, 38, 51, 0.55)',   // Bright Red (#FF2633)
-      'rgba(139, 0, 0, 0.45)',     // Deep Crimson
-      'rgba(255, 255, 255, 0.35)', // Faint White Star Node
+    const darkColors = [
+      'rgba(229, 9, 20, 0.75)',   // Primary Red (#E50914)
+      'rgba(255, 38, 51, 0.65)',  // Bright Red (#FF2633)
+      'rgba(239, 68, 68, 0.55)',  // Crimson
+      'rgba(255, 255, 255, 0.35)', // Subtle Star Spark
+    ];
+
+    const lightColors = [
+      'rgba(229, 9, 20, 0.75)',   // Rich Red
+      'rgba(220, 38, 38, 0.65)',  // Carmine Red
+      'rgba(185, 28, 28, 0.55)',  // Deep Ruby
+      'rgba(239, 68, 68, 0.45)',  // Coral Red
     ];
 
     for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * width,
         y: Math.random() * height,
-        vx: (Math.random() - 0.5) * 0.35,
-        vy: (Math.random() - 0.5) * 0.35,
-        size: Math.random() * 1.8 + 0.8,
-        color: colors[Math.floor(Math.random() * colors.length)],
+        vx: (Math.random() - 0.5) * 0.25,
+        vy: (Math.random() - 0.5) * 0.25,
+        baseSize: Math.random() * 1.3 + 0.8,
+        pulsePhase: Math.random() * Math.PI * 2,
+        pulseSpeed: 0.015 + Math.random() * 0.015,
+        colorIndex: Math.floor(Math.random() * 4),
       });
     }
 
     let t = 0;
 
     const render = () => {
-      t += 0.005;
+      t += 0.01;
       ctx.clearRect(0, 0, width, height);
 
-      // Subtle slow-moving ambient red radial light in background
-      const ambientX = width * (0.5 + 0.2 * Math.sin(t));
-      const ambientY = height * (0.3 + 0.15 * Math.cos(t * 0.8));
-      const gradient = ctx.createRadialGradient(ambientX, ambientY, 0, ambientX, ambientY, width * 0.5);
-      gradient.addColorStop(0, 'rgba(229, 9, 20, 0.04)');
-      gradient.addColorStop(1, 'rgba(8, 8, 8, 0)');
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, width, height);
+      const isDark = document.documentElement.classList.contains('dark');
+      const activeColors = isDark ? darkColors : lightColors;
 
-      // Mouse-responsive ambient glow
-      if (mouse.x !== null && mouse.y !== null) {
-        const mouseGrad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 160);
-        mouseGrad.addColorStop(0, 'rgba(229, 9, 20, 0.08)');
-        mouseGrad.addColorStop(1, 'transparent');
-        ctx.fillStyle = mouseGrad;
-        ctx.fillRect(0, 0, width, height);
-      }
-
-      // Draw and connect particles
+      // Draw subtle drifting and pulsing background particles
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
 
@@ -117,26 +120,33 @@ export default function ParticleCanvas() {
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < mouse.radius) {
             const force = (mouse.radius - dist) / mouse.radius;
-            p.x -= (dx / dist) * force * 1.2;
-            p.y -= (dy / dist) * force * 1.2;
+            p.x -= (dx / dist) * force * 0.8;
+            p.y -= (dy / dist) * force * 0.8;
           }
         }
 
+        // Subtle breathing radius
+        const currentRadius = p.baseSize * (1 + 0.18 * Math.sin(t * 1.8 + p.pulsePhase));
+
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
+        ctx.arc(p.x, p.y, Math.max(0.6, currentRadius), 0, Math.PI * 2);
+        ctx.fillStyle = activeColors[p.colorIndex];
+        ctx.shadowColor = 'rgba(229, 9, 20, 0.45)';
+        ctx.shadowBlur = isMobile ? 3 : 5;
         ctx.fill();
 
+        // Very delicate connecting lines between close particles
         for (let j = i + 1; j < particles.length; j++) {
           const p2 = particles[j];
           const dx = p.x - p2.x;
           const dy = p.y - p2.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 110) {
-            const alpha = (1 - dist / 110) * 0.15;
+          if (dist < 75) {
+            const alpha = (1 - dist / 75) * (isDark ? 0.09 : 0.06);
+            ctx.shadowBlur = 0;
             ctx.strokeStyle = `rgba(229, 9, 20, ${alpha})`;
-            ctx.lineWidth = 0.65;
+            ctx.lineWidth = 0.5;
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
@@ -159,14 +169,11 @@ export default function ParticleCanvas() {
   }, []);
 
   return (
-    <>
-      <canvas
-        ref={canvasRef}
-        className="fixed inset-0 pointer-events-none z-0 opacity-80"
-        style={{ display: 'block' }}
-      />
-      {/* Soft Vignette around Viewport */}
-      <div className="fixed inset-0 pointer-events-none z-0 vignette-overlay" />
-    </>
+    <canvas
+      ref={canvasRef}
+      className={className}
+      style={{ display: 'block' }}
+      aria-hidden="true"
+    />
   );
 }
