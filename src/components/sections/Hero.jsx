@@ -90,10 +90,10 @@ export default function Hero({ onDownloadResume }) {
           {/* Symmetrical Red Halo Ring behind portrait head & upper torso (z-0) */}
           <div
             id="hero-desktop-halo"
-            className="absolute top-[32%] xl:top-[33%] 2xl:top-[34%] left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0"
+            className="absolute top-[32%] xl:top-[35%] 2xl:top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0"
             aria-hidden="true"
           >
-            <div className="w-[330px] h-[330px] xl:w-[370px] xl:h-[370px] 2xl:w-[450px] 2xl:h-[450px] rounded-full border-2 border-red-500/40 bg-gradient-to-tr from-red-600/10 via-red-950/15 to-transparent shadow-[0_0_30px_rgba(229,9,20,0.3),inset_0_0_15px_rgba(229,9,20,0.12)]" />
+            <div className="w-[380px] h-[380px] xl:w-[370px] xl:h-[370px] 2xl:w-[450px] 2xl:h-[450px] rounded-full border-2 border-red-500/40 bg-gradient-to-tr from-red-600/10 via-red-950/15 to-transparent shadow-[0_0_30px_rgba(229,9,20,0.3),inset_0_0_15px_rgba(229,9,20,0.12)]" />
           </div>
 
           {/* Transparent cutout of Tanish in grey suit with folded hands (relative z-10) */}
