@@ -48,7 +48,7 @@ export default function Hero({ onDownloadResume }) {
   return (
     <section
       id="home"
-      className="relative min-h-screen md:h-[100svh] md:min-h-[860px] xl:min-h-[900px] w-full max-w-full flex flex-col justify-between pt-20 sm:pt-24 md:pt-20 pb-4 sm:pb-6 overflow-hidden bg-transparent box-border"
+      className="relative min-h-screen md:h-[100svh] md:min-h-[660px] md:max-h-[1120px] w-full max-w-full flex flex-col justify-between pt-20 sm:pt-24 md:pt-[clamp(5.25rem,9.5vh,6.5rem)] pb-4 sm:pb-6 md:pb-[clamp(0.5rem,1.2vh,1rem)] overflow-hidden bg-transparent box-border"
     >
       {/* ======================================================== */}
       {/* LAYER 1 & 2: BASE TECHNICAL GRID & BACKGROUND EFFECTS     */}
@@ -78,17 +78,19 @@ export default function Hero({ onDownloadResume }) {
       {/* Ring is at z-0, Portrait image is at relative z-10                     */}
       {/* The portrait naturally covers the ring wherever they overlap.          */}
       {/* The ring arches above and frames head/shoulders as a background halo.  */}
+      {/* Vertically positioned higher from top to eliminate empty void below navbar. */}
       {/* ====================================================================== */}
-      <div className="hidden md:flex absolute inset-x-0 bottom-14 lg:bottom-12 top-16 lg:top-14 items-end justify-center pointer-events-none select-none z-[5]">
+      <div className="hidden md:flex absolute inset-x-0 top-[clamp(6.75rem,13.5vh,8.75rem)] justify-center pointer-events-none select-none z-[5]">
         <motion.div
-          initial={{ opacity: 0, y: 25, scale: 0.96 }}
+          initial={{ opacity: 0, y: 20, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-          className="relative h-[560px] xl:h-[620px] 2xl:h-[660px] w-auto max-w-[90vw] flex items-end justify-center"
+          className="relative h-[min(515px,calc(100vh-250px))] lg:h-[min(545px,calc(100vh-250px))] xl:h-[min(600px,calc(100vh-250px))] 2xl:h-[min(660px,calc(100vh-250px))] w-auto max-w-[90vw] flex items-end justify-center"
         >
           {/* Symmetrical Red Halo Ring behind portrait head & upper torso (z-0) */}
           <div
-            className="absolute top-[28%] xl:top-[30%] left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0"
+            id="hero-desktop-halo"
+            className="absolute top-[32%] xl:top-[33%] 2xl:top-[34%] left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0"
             aria-hidden="true"
           >
             <div className="w-[330px] h-[330px] xl:w-[370px] xl:h-[370px] 2xl:w-[450px] 2xl:h-[450px] rounded-full border-2 border-red-500/40 bg-gradient-to-tr from-red-600/10 via-red-950/15 to-transparent shadow-[0_0_30px_rgba(229,9,20,0.3),inset_0_0_15px_rgba(229,9,20,0.12)]" />
@@ -96,6 +98,7 @@ export default function Hero({ onDownloadResume }) {
 
           {/* Transparent cutout of Tanish in grey suit with folded hands (relative z-10) */}
           <img
+            id="hero-desktop-portrait"
             src={PORTRAIT_CUTOUT}
             alt="Tanish Jangale"
             className="relative z-10 h-full w-auto object-contain filter drop-shadow-[0_15px_35px_rgba(0,0,0,0.5)] dark:drop-shadow-[0_15px_35px_rgba(0,0,0,0.9)] brightness-[1.02] contrast-[1.02]"
@@ -103,7 +106,7 @@ export default function Hero({ onDownloadResume }) {
           />
 
           {/* Soft Bottom Grounding Fade */}
-          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#F8F9FA] dark:from-[#080808] to-transparent pointer-events-none z-10" />
+          <div className="absolute inset-x-0 bottom-0 h-16 xl:h-20 bg-gradient-to-t from-[#080808] to-transparent pointer-events-none z-10" />
         </motion.div>
       </div>
 
@@ -112,9 +115,11 @@ export default function Hero({ onDownloadResume }) {
       {/* Single line, strong modern bold sans-serif, tasteful     */}
       {/* letter-spacing, across lower torso/chest (NEVER face!)   */}
       {/* TANISH in white, JANGALE in red.                         */}
+      {/* Responsive vertical placement moves upward with portrait. */}
       {/* ======================================================== */}
-      <div className="hidden md:block absolute top-[68%] xl:top-[69%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center z-[6] pointer-events-none select-none px-4">
+      <div className="hidden md:block absolute top-[clamp(420px,57vh,600px)] lg:top-[clamp(430px,57.5vh,615px)] xl:top-[clamp(440px,58vh,635px)] left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center z-[6] pointer-events-none select-none px-4">
         <motion.h1
+          id="hero-desktop-name"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
@@ -133,20 +138,23 @@ export default function Hero({ onDownloadResume }) {
       {/* LAYER 10 (DESKTOP): FOREGROUND TWO-COLUMN CONTENT        */}
       {/* Left side aligned left, Right side aligned right,         */}
       {/* with portrait clear in center and NO collision!          */}
+      {/* Positioned higher to start closer to navbar and fill      */}
+      {/* vertical composition naturally.                          */}
       {/* ======================================================== */}
-      <div className="hidden md:flex relative max-w-[1560px] mx-auto px-6 lg:px-8 xl:px-12 w-full z-[10] my-auto items-center justify-between">
+      <div className="hidden md:flex relative max-w-[1560px] mx-auto px-6 lg:px-8 xl:px-12 w-full z-[10] mt-[clamp(0.5rem,1.8vh,1.5rem)] mb-auto items-start justify-between">
 
         {/* ---------------------------------------------------- */}
         {/* LEFT SIDE: Greeting, Title, AI Card, Security Card, Socials */}
         {/* ---------------------------------------------------- */}
         <motion.div
+          id="hero-desktop-left-col"
           initial={{ opacity: 0, x: -25 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex flex-col items-start space-y-3.5 w-[310px] xl:w-[340px] flex-shrink-0"
+          className="flex flex-col items-start space-y-2 lg:space-y-2.5 xl:space-y-3 w-[310px] xl:w-[340px] flex-shrink-0"
         >
           {/* Greeting & Availability Badge */}
-          <div className="flex flex-wrap items-center gap-2">
+          <div id="hero-desktop-left-badge" className="flex flex-wrap items-center gap-2">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-100 dark:bg-red-950/70 border border-red-300 dark:border-red-500/40 text-red-600 dark:text-red-400 text-xs font-semibold tracking-wider uppercase shadow-sm dark:shadow-[0_0_15px_rgba(229,9,20,0.25)]">
               <Sparkles className="w-3.5 h-3.5 text-[#E50914]" />
               <span>HELLO, I'M TANISH</span>
@@ -161,6 +169,7 @@ export default function Hero({ onDownloadResume }) {
             </div>
           </div>
 
+
           {/* Professional Title */}
           <div className="flex items-center gap-2 text-xs font-mono font-bold text-red-600 dark:text-red-400 tracking-wide">
             <Terminal className="w-4 h-4 text-[#E50914] flex-shrink-0" />
@@ -171,10 +180,10 @@ export default function Hero({ onDownloadResume }) {
           <motion.div
             whileHover={{ y: -3, scale: 1.01 }}
             transition={{ duration: 0.2 }}
-            className="w-full p-3.5 rounded-2xl bg-white/90 dark:bg-zinc-900/85 backdrop-blur-md border border-zinc-200/90 dark:border-zinc-800/90 hover:border-red-500/40 shadow-sm dark:shadow-[0_4px_20px_rgba(0,0,0,0.7)] group transition-all text-left"
+            className="w-full p-3 xl:p-3.5 rounded-2xl bg-white/90 dark:bg-zinc-900/85 backdrop-blur-md border border-zinc-200/90 dark:border-zinc-800/90 hover:border-red-500/40 shadow-sm dark:shadow-[0_4px_20px_rgba(0,0,0,0.7)] group transition-all text-left"
           >
             <div className="flex items-start gap-3">
-              <div className="p-2.5 rounded-xl bg-red-50 dark:bg-red-950/60 border border-red-200 dark:border-red-500/30 text-red-600 dark:text-red-400 group-hover:scale-105 transition-transform flex-shrink-0">
+              <div className="p-2 xl:p-2.5 rounded-xl bg-red-50 dark:bg-red-950/60 border border-red-200 dark:border-red-500/30 text-red-600 dark:text-red-400 group-hover:scale-105 transition-transform flex-shrink-0">
                 <Brain className="w-4 h-4 xl:w-5 xl:h-5 text-[#E50914]" />
               </div>
               <div>
@@ -192,10 +201,10 @@ export default function Hero({ onDownloadResume }) {
           <motion.div
             whileHover={{ y: -3, scale: 1.01 }}
             transition={{ duration: 0.2 }}
-            className="w-full p-3.5 rounded-2xl bg-white/90 dark:bg-zinc-900/85 backdrop-blur-md border border-zinc-200/90 dark:border-zinc-800/90 hover:border-red-500/40 shadow-sm dark:shadow-[0_4px_20px_rgba(0,0,0,0.7)] group transition-all text-left"
+            className="w-full p-3 xl:p-3.5 rounded-2xl bg-white/90 dark:bg-zinc-900/85 backdrop-blur-md border border-zinc-200/90 dark:border-zinc-800/90 hover:border-red-500/40 shadow-sm dark:shadow-[0_4px_20px_rgba(0,0,0,0.7)] group transition-all text-left"
           >
             <div className="flex items-start gap-3">
-              <div className="p-2.5 rounded-xl bg-red-50 dark:bg-red-950/60 border border-red-200 dark:border-red-500/30 text-red-600 dark:text-red-400 group-hover:scale-105 transition-transform flex-shrink-0">
+              <div className="p-2 xl:p-2.5 rounded-xl bg-red-50 dark:bg-red-950/60 border border-red-200 dark:border-red-500/30 text-red-600 dark:text-red-400 group-hover:scale-105 transition-transform flex-shrink-0">
                 <Shield className="w-4 h-4 xl:w-5 xl:h-5 text-[#E50914]" />
               </div>
               <div>
@@ -210,13 +219,13 @@ export default function Hero({ onDownloadResume }) {
           </motion.div>
 
           {/* Social Profiles */}
-          <div className="flex items-center gap-2.5 pt-1">
+          <div className="flex items-center gap-2.5 pt-0.5">
             <a
               href={personalInfo.socials.github}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub Profile - Tanish Jangale"
-              className="p-2.5 rounded-xl bg-white/90 dark:bg-zinc-900/90 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:text-[#E50914] dark:hover:text-[#E50914] hover:border-red-500/50 shadow-sm transition-all"
+              className="p-2 xl:p-2.5 rounded-xl bg-white/90 dark:bg-zinc-900/90 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:text-[#E50914] dark:hover:text-[#E50914] hover:border-red-500/50 shadow-sm transition-all"
             >
               <Github className="w-4 h-4" />
             </a>
@@ -226,7 +235,7 @@ export default function Hero({ onDownloadResume }) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn Profile - Tanish Jangale"
-              className="p-2.5 rounded-xl bg-white/90 dark:bg-zinc-900/90 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:text-[#E50914] dark:hover:text-[#E50914] hover:border-red-500/50 shadow-sm transition-all"
+              className="p-2 xl:p-2.5 rounded-xl bg-white/90 dark:bg-zinc-900/90 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:text-[#E50914] dark:hover:text-[#E50914] hover:border-red-500/50 shadow-sm transition-all"
             >
               <Linkedin className="w-4 h-4" />
             </a>
@@ -234,7 +243,7 @@ export default function Hero({ onDownloadResume }) {
             <a
               href={`mailto:${personalInfo.socials.email}`}
               aria-label="Send Email to Tanish Jangale"
-              className="p-2.5 rounded-xl bg-white/90 dark:bg-zinc-900/90 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:text-[#E50914] dark:hover:text-[#E50914] hover:border-red-500/50 shadow-sm transition-all"
+              className="p-2 xl:p-2.5 rounded-xl bg-white/90 dark:bg-zinc-900/90 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 hover:text-[#E50914] dark:hover:text-[#E50914] hover:border-red-500/50 shadow-sm transition-all"
             >
               <Mail className="w-4 h-4" />
             </a>
@@ -243,15 +252,16 @@ export default function Hero({ onDownloadResume }) {
 
         {/* ---------------------------------------------------- */}
         {/* RIGHT SIDE: Tagline, Statistics, Full-Stack Card     */}
+        {/* Top aligned to visually balance with left side badges */}
         {/* ---------------------------------------------------- */}
         <motion.div
           initial={{ opacity: 0, x: 25 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="flex flex-col items-end space-y-3.5 w-[310px] xl:w-[340px] flex-shrink-0"
+          className="flex flex-col items-end space-y-2 lg:space-y-2.5 xl:space-y-3 w-[310px] xl:w-[340px] flex-shrink-0"
         >
           {/* Professional Introduction */}
-          <div className="w-full p-4 rounded-2xl bg-white/90 dark:bg-zinc-900/80 backdrop-blur-md border border-zinc-200 dark:border-zinc-800/85 shadow-sm dark:shadow-[0_4px_20px_rgba(0,0,0,0.6)] text-left">
+          <div className="w-full p-3.5 xl:p-4 rounded-2xl bg-white/90 dark:bg-zinc-900/80 backdrop-blur-md border border-zinc-200 dark:border-zinc-800/85 shadow-sm dark:shadow-[0_4px_20px_rgba(0,0,0,0.6)] text-left">
             <p className="text-xs xl:text-[13px] text-zinc-700 dark:text-zinc-300 leading-relaxed font-normal">
               {personalInfo.tagline}
             </p>
@@ -259,17 +269,17 @@ export default function Hero({ onDownloadResume }) {
 
           {/* Statistics */}
           <div className="grid grid-cols-3 gap-2 w-full">
-            <div className="p-2.5 rounded-xl bg-white/95 dark:bg-zinc-900/85 backdrop-blur-md border border-zinc-200 dark:border-zinc-800 text-center shadow-sm">
+            <div className="p-2 xl:p-2.5 rounded-xl bg-white/95 dark:bg-zinc-900/85 backdrop-blur-md border border-zinc-200 dark:border-zinc-800 text-center shadow-sm">
               <span className="block text-base xl:text-lg font-black text-zinc-900 dark:text-white">2026</span>
               <span className="block text-[9px] xl:text-[10px] font-mono text-zinc-500 dark:text-zinc-400 uppercase mt-0.5">BCA Amity</span>
             </div>
 
-            <div className="p-2.5 rounded-xl bg-white/95 dark:bg-zinc-900/85 backdrop-blur-md border border-zinc-200 dark:border-zinc-800 text-center shadow-sm">
+            <div className="p-2 xl:p-2.5 rounded-xl bg-white/95 dark:bg-zinc-900/85 backdrop-blur-md border border-zinc-200 dark:border-zinc-800 text-center shadow-sm">
               <span className="block text-base xl:text-lg font-black text-[#E50914]">5+</span>
               <span className="block text-[9px] xl:text-[10px] font-mono text-zinc-500 dark:text-zinc-400 uppercase mt-0.5">Projects</span>
             </div>
 
-            <div className="p-2.5 rounded-xl bg-white/95 dark:bg-zinc-900/85 backdrop-blur-md border border-zinc-200 dark:border-zinc-800 text-center shadow-sm">
+            <div className="p-2 xl:p-2.5 rounded-xl bg-white/95 dark:bg-zinc-900/85 backdrop-blur-md border border-zinc-200 dark:border-zinc-800 text-center shadow-sm">
               <span className="block text-base xl:text-lg font-black text-zinc-900 dark:text-white">3</span>
               <span className="block text-[9px] xl:text-[10px] font-mono text-zinc-500 dark:text-zinc-400 uppercase mt-0.5">Domains</span>
             </div>
@@ -279,10 +289,10 @@ export default function Hero({ onDownloadResume }) {
           <motion.div
             whileHover={{ y: -3, scale: 1.01 }}
             transition={{ duration: 0.2 }}
-            className="w-full p-3.5 rounded-2xl bg-white/90 dark:bg-zinc-900/85 backdrop-blur-md border border-zinc-200/90 dark:border-zinc-800/90 hover:border-red-500/40 shadow-sm dark:shadow-[0_4px_20px_rgba(0,0,0,0.7)] group transition-all text-left"
+            className="w-full p-3 xl:p-3.5 rounded-2xl bg-white/90 dark:bg-zinc-900/85 backdrop-blur-md border border-zinc-200/90 dark:border-zinc-800/90 hover:border-red-500/40 shadow-sm dark:shadow-[0_4px_20px_rgba(0,0,0,0.7)] group transition-all text-left"
           >
             <div className="flex items-start gap-3">
-              <div className="p-2.5 rounded-xl bg-red-50 dark:bg-red-950/60 border border-red-200 dark:border-red-500/30 text-red-600 dark:text-red-400 group-hover:scale-105 transition-transform flex-shrink-0">
+              <div className="p-2 xl:p-2.5 rounded-xl bg-red-50 dark:bg-red-950/60 border border-red-200 dark:border-red-500/30 text-red-600 dark:text-red-400 group-hover:scale-105 transition-transform flex-shrink-0">
                 <Code2 className="w-4 h-4 xl:w-5 xl:h-5 text-[#E50914]" />
               </div>
               <div>
@@ -306,12 +316,12 @@ export default function Hero({ onDownloadResume }) {
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.25 }}
-        className="hidden md:flex flex-wrap items-center justify-center gap-3 pt-3 pb-1 w-full z-[10]"
+        className="hidden md:flex flex-wrap items-center justify-center gap-2.5 xl:gap-3 pt-1.5 xl:pt-2.5 pb-0.5 w-full z-[10] mt-auto"
       >
         <button
           id="hero-explore-projects-btn"
           onClick={() => handleScrollTo('projects')}
-          className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl font-bold text-xs xl:text-sm text-white bg-gradient-to-r from-[#E50914] via-[#FF2633] to-[#c40811] shadow-[0_0_25px_rgba(229,9,20,0.4)] hover:shadow-[0_0_35px_rgba(229,9,20,0.65)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 group cursor-pointer"
+          className="inline-flex items-center justify-center gap-2 px-6 py-2.5 xl:px-7 xl:py-3 rounded-xl font-bold text-xs xl:text-sm text-white bg-gradient-to-r from-[#E50914] via-[#FF2633] to-[#c40811] shadow-[0_0_25px_rgba(229,9,20,0.4)] hover:shadow-[0_0_35px_rgba(229,9,20,0.65)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 group cursor-pointer"
         >
           <span>Explore My Projects</span>
           <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -320,7 +330,7 @@ export default function Hero({ onDownloadResume }) {
         <button
           id="hero-contact-btn"
           onClick={() => handleScrollTo('contact')}
-          className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl font-bold text-xs xl:text-sm text-zinc-900 dark:text-white bg-white/90 hover:bg-zinc-100 dark:bg-zinc-900/90 dark:hover:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 hover:border-red-500/60 shadow-sm dark:shadow-[0_4px_16px_rgba(0,0,0,0.6)] active:scale-[0.98] transition-all duration-200 backdrop-blur-md cursor-pointer"
+          className="inline-flex items-center justify-center gap-2 px-6 py-2.5 xl:px-7 xl:py-3 rounded-xl font-bold text-xs xl:text-sm text-zinc-900 dark:text-white bg-white/90 hover:bg-zinc-100 dark:bg-zinc-900/90 dark:hover:bg-zinc-800 border border-zinc-300 dark:border-zinc-700 hover:border-red-500/60 shadow-sm dark:shadow-[0_4px_16px_rgba(0,0,0,0.6)] active:scale-[0.98] transition-all duration-200 backdrop-blur-md cursor-pointer"
         >
           <Mail className="w-4 h-4 text-[#E50914]" />
           <span>Contact Me</span>
@@ -329,7 +339,7 @@ export default function Hero({ onDownloadResume }) {
         <button
           id="hero-download-resume-btn"
           onClick={handleResumeClick}
-          className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl font-bold text-xs xl:text-sm text-zinc-900 dark:text-white bg-white/90 hover:bg-zinc-100 dark:bg-zinc-900/90 dark:hover:bg-zinc-800 border border-red-500/40 hover:border-red-500 shadow-sm dark:shadow-[0_0_15px_rgba(229,9,20,0.2)] hover:shadow-[0_0_22px_rgba(229,9,20,0.4)] active:scale-[0.98] transition-all duration-200 backdrop-blur-md cursor-pointer"
+          className="inline-flex items-center justify-center gap-2 px-6 py-2.5 xl:px-7 xl:py-3 rounded-xl font-bold text-xs xl:text-sm text-zinc-900 dark:text-white bg-white/90 hover:bg-zinc-100 dark:bg-zinc-900/90 dark:hover:bg-zinc-800 border border-red-500/40 hover:border-red-500 shadow-sm dark:shadow-[0_0_15px_rgba(229,9,20,0.2)] hover:shadow-[0_0_22px_rgba(229,9,20,0.4)] active:scale-[0.98] transition-all duration-200 backdrop-blur-md cursor-pointer"
         >
           <Download className="w-4 h-4 text-[#FF2633]" />
           <span>Download Resume</span>

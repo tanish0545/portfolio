@@ -1,0 +1,356 @@
+{
+  "1366x768": {
+    "viewportHeight": 768,
+    "navbar": {
+      "top": 0,
+      "bottom": 86,
+      "height": 86,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "leftBadge": {
+      "top": 98,
+      "bottom": 158,
+      "height": 60,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "halo": {
+      "top": 73,
+      "bottom": 443,
+      "height": 370,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "portraitImg": {
+      "top": 108,
+      "bottom": 626,
+      "height": 518,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "heroName": {
+      "top": 406,
+      "bottom": 492,
+      "height": 86,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "exploreBtn": {
+      "top": 667,
+      "bottom": 711,
+      "height": 44,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "contactBtn": {
+      "top": 666,
+      "bottom": 712,
+      "height": 46,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "scrollIndicator": {
+      "top": 722,
+      "bottom": 755,
+      "height": 33,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    }
+  },
+  "1440x768": {
+    "viewportHeight": 768,
+    "navbar": {
+      "top": 0,
+      "bottom": 86,
+      "height": 86,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "leftBadge": {
+      "top": 98,
+      "bottom": 158,
+      "height": 60,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "halo": {
+      "top": 73,
+      "bottom": 443,
+      "height": 370,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "portraitImg": {
+      "top": 108,
+      "bottom": 626,
+      "height": 518,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "heroName": {
+      "top": 406,
+      "bottom": 492,
+      "height": 86,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "exploreBtn": {
+      "top": 667,
+      "bottom": 711,
+      "height": 44,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "contactBtn": {
+      "top": 666,
+      "bottom": 712,
+      "height": 46,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "scrollIndicator": {
+      "top": 722,
+      "bottom": 755,
+      "height": 33,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    }
+  },
+  "1440x900": {
+    "viewportHeight": 900,
+    "navbar": {
+      "top": 0,
+      "bottom": 86,
+      "height": 86,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "leftBadge": {
+      "top": 102,
+      "bottom": 162,
+      "height": 60,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "halo": {
+      "top": 115,
+      "bottom": 485,
+      "height": 370,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "portraitImg": {
+      "top": 126,
+      "bottom": 726,
+      "height": 600,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "heroName": {
+      "top": 483,
+      "bottom": 570,
+      "height": 86,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "exploreBtn": {
+      "top": 797,
+      "bottom": 841,
+      "height": 44,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "contactBtn": {
+      "top": 796,
+      "bottom": 842,
+      "height": 46,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "scrollIndicator": {
+      "top": 852,
+      "bottom": 885,
+      "height": 33,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    }
+  },
+  "1536x864": {
+    "viewportHeight": 864,
+    "navbar": {
+      "top": 0,
+      "bottom": 86,
+      "height": 86,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "leftBadge": {
+      "top": 100,
+      "bottom": 160,
+      "height": 60,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "halo": {
+      "top": 80,
+      "bottom": 530,
+      "height": 450,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "portraitImg": {
+      "top": 121,
+      "bottom": 735,
+      "height": 614,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "heroName": {
+      "top": 456,
+      "bottom": 555,
+      "height": 99,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "exploreBtn": {
+      "top": 762,
+      "bottom": 806,
+      "height": 44,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "contactBtn": {
+      "top": 761,
+      "bottom": 807,
+      "height": 46,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "scrollIndicator": {
+      "top": 817,
+      "bottom": 850,
+      "height": 33,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    }
+  },
+  "1920x1080": {
+    "viewportHeight": 1080,
+    "navbar": {
+      "top": 0,
+      "bottom": 86,
+      "height": 86,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "leftBadge": {
+      "top": 122,
+      "bottom": 182,
+      "height": 60,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "halo": {
+      "top": 101,
+      "bottom": 551,
+      "height": 450,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "portraitImg": {
+      "top": 128,
+      "bottom": 788,
+      "height": 660,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "heroName": {
+      "top": 570,
+      "bottom": 670,
+      "height": 99,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "exploreBtn": {
+      "top": 975,
+      "bottom": 1019,
+      "height": 44,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "contactBtn": {
+      "top": 974,
+      "bottom": 1020,
+      "height": 46,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "scrollIndicator": {
+      "top": 1030,
+      "bottom": 1063,
+      "height": 33,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    }
+  },
+  "mobile_390x844": {
+    "viewportHeight": 844,
+    "navbar": {
+      "top": 0,
+      "bottom": 80,
+      "height": 80,
+      "visibleInViewport": true,
+      "fullyInViewport": true
+    },
+    "leftBadge": {
+      "top": 0,
+      "bottom": 0,
+      "height": 0,
+      "visibleInViewport": false,
+      "fullyInViewport": true
+    },
+    "halo": {
+      "top": 0,
+      "bottom": 0,
+      "height": 0,
+      "visibleInViewport": false,
+      "fullyInViewport": true
+    },
+    "portraitImg": {
+      "top": 0,
+      "bottom": 0,
+      "height": 0,
+      "visibleInViewport": false,
+      "fullyInViewport": true
+    },
+    "heroName": {
+      "top": 0,
+      "bottom": 0,
+      "height": 0,
+      "visibleInViewport": false,
+      "fullyInViewport": true
+    },
+    "exploreBtn": {
+      "top": 0,
+      "bottom": 0,
+      "height": 0,
+      "visibleInViewport": false,
+      "fullyInViewport": true
+    },
+    "contactBtn": {
+      "top": 0,
+      "bottom": 0,
+      "height": 0,
+      "visibleInViewport": false,
+      "fullyInViewport": true
+    },
+    "scrollIndicator": {
+      "top": 1110,
+      "bottom": 1143,
+      "height": 33,
+      "visibleInViewport": false,
+      "fullyInViewport": false
+    }
+  }
+}
